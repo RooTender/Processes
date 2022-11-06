@@ -54,7 +54,15 @@
                 <TextBox Grid.Column="2" Name="FilterText" Margin="5" ></TextBox>
             </Grid>
 
-            <ListBox Grid.Row="2" Name="ProcessList" Margin="5" />
+            <ListView Grid.Row="2" Name="ProcessList" Margin="5" 
+                     ItemsSource="{Binding ProcessesList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ProcessName}" Header="Process Name"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <Grid Column="1">
