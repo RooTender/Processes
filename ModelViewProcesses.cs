@@ -22,6 +22,7 @@ namespace Processes
 
             _model.RefreshProcesses = new RelayCommand(RefreshProcessesCommand);
             _model.ToggleRefreshing = new RelayCommand(ToggleAutomaticRefreshingCommand);
+            _model.SortProcessesList = new RelayCommand(SortProcessesListCommand);
 
             _timer.Tick += RefreshProcessesCommand;
         }
@@ -29,6 +30,7 @@ namespace Processes
         public IEnumerable<Process> ProcessesList => _model.ProcessesList;
         public ICommand RefreshProcesses => _model.RefreshProcesses;
         public ICommand ToggleAutomaticRefreshing => _model.ToggleRefreshing;
+        public ICommand SortProcessesList => _model.SortProcessesList;
 
         public string? RefreshInterval
         {
@@ -39,6 +41,12 @@ namespace Processes
         public string? ProcessId => _model.ProcessId;
         public string? ProcessName => _model.ProcessName;
         public string? ProcessTotalActiveTime => _model.ProcessTotalActiveTime;
+
+        private void SortProcessesListCommand(object obj)
+        {
+            _model.ProcessesList = _model.ProcessesList.OrderBy(x => x.ProcessName).ThenBy(x => x.Id);
+            OnPropertyUpdated(nameof(ProcessesList));
+        }
 
         private void ToggleAutomaticRefreshingCommand(object sender)
         {
@@ -68,7 +76,7 @@ namespace Processes
 
             _timer.Start();
             _model.ProcessesList = new List<Process>(Process.GetProcesses()).Where(HasPriorityModifiable);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProcessesList)));
+            OnPropertyUpdated(nameof(ProcessesList));
         }
 
         private void RefreshProcessesCommand(object? sender, EventArgs e)
@@ -84,7 +92,7 @@ namespace Processes
         private void RefreshProcessesList()
         {
             _model.ProcessesList = new List<Process>(Process.GetProcesses()).Where(HasPriorityModifiable);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProcessesList)));
+            OnPropertyUpdated(nameof(ProcessesList));
         }
 
         private static bool HasPriorityModifiable(Process process)
@@ -101,5 +109,9 @@ namespace Processes
             return true;
         }
 
+        private void OnPropertyUpdated(string? nameOfProperty)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameOfProperty));
+        }
     }
 }

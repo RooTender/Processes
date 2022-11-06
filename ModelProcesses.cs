@@ -15,5 +15,6 @@ namespace Processes
 
         public ICommand RefreshProcesses;
         public ICommand ToggleRefreshing;
+        public ICommand SortProcessesList;
     }
 }

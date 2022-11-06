@@ -53,9 +53,10 @@
                     <ColumnDefinition Width="160*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="SortButton" Content="Sort" Margin="5,0,5,0" Height="29" VerticalAlignment="Center"/>
+                <Button Grid.Column="0" Name="SortButton" Content="Sort" Margin="5,0,5,0" Height="29" VerticalAlignment="Center"
+                        Command="{Binding SortProcessesList}"/>
                 <Label Grid.Column="1" Content="Filter:" Margin="10,5,0,5" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-                <TextBox Grid.Column="3" Name="FilterText" Margin="5,5,5,5" ></TextBox>
+                <TextBox Grid.Column="3" Name="FilterText" Margin="5,5,5,5" />
             </Grid>
 
             <ListView Grid.Row="2" Name="ProcessList" Margin="5" 
