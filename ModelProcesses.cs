@@ -12,9 +12,12 @@ namespace Processes
         public string? ProcessName;
         public string? ProcessTotalActiveTime;
         public string? RefreshInterval;
+        public string? FilterText;
 
         public ICommand RefreshProcesses;
         public ICommand ToggleRefreshing;
         public ICommand SortProcessesList;
+        public ICommand FilterProcessList;
+        
     }
 }

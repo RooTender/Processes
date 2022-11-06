@@ -23,20 +23,37 @@ namespace Processes
             _model.RefreshProcesses = new RelayCommand(RefreshProcessesCommand);
             _model.ToggleRefreshing = new RelayCommand(ToggleAutomaticRefreshingCommand);
             _model.SortProcessesList = new RelayCommand(SortProcessesListCommand);
+            //_model.FilterProcessList = new RelayCommand(FilterProcessListCommand);
 
             _timer.Tick += RefreshProcessesCommand;
         }
 
         public IEnumerable<Process> ProcessesList => _model.ProcessesList;
+
         public ICommand RefreshProcesses => _model.RefreshProcesses;
         public ICommand ToggleAutomaticRefreshing => _model.ToggleRefreshing;
         public ICommand SortProcessesList => _model.SortProcessesList;
+        //public ICommand FilterProcessList => _model.FilterProcessList;
+        
+        public string? FilterText
+        {
+            get => _model.FilterText;
+            set
+            {
+                _model.FilterText = value;
+                if (value == null) return;
+
+                _model.ProcessesList = _model.ProcessesList.Where(x => x.ProcessName.Contains(value));
+                OnPropertyUpdated(nameof(ProcessesList));
+            }
+        }
 
         public string? RefreshInterval
         {
             get => _model.RefreshInterval;
             set => _model.RefreshInterval = value;
         }
+        
 
         public string? ProcessId => _model.ProcessId;
         public string? ProcessName => _model.ProcessName;
