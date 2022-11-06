@@ -12,11 +12,12 @@ namespace Processes
         public string? FilterText;
 
         public Process? SelectedProcess;
+        public ProcessPriorityClass SelectedPriority;
 
         public ICommand RefreshProcesses;
         public ICommand ToggleRefreshing;
         public ICommand SortProcessesList;
         public ICommand FilterProcessList;
-        
+        public ICommand ApplyPriorityClass;
     }
 }

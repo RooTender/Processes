@@ -86,9 +86,6 @@
                 <Label FontWeight="Bold">Name:</Label>
                 <TextBlock Name="ProcessName" Margin="5, 0, 0, 0"
                            Text="{Binding SelectedProcess.ProcessName, Mode=OneWay}"/>
-                <Label FontWeight="Bold">Priority class:</Label>
-                <TextBlock Name="ProcessPriorityClass" Margin="5, 0, 0, 0"
-                           Text="{Binding SelectedProcess.PriorityClass, Mode=OneWay}"/>
                 <Label FontWeight="Bold">User processor time:</Label>
                 <TextBlock Name="ProcessUserProcessorTime" Margin="5, 0, 0, 0"
                            Text="{Binding SelectedProcess.UserProcessorTime, Mode=OneWay}"/>
@@ -112,8 +109,10 @@
                 <Label FontWeight="Bold">Priority:</Label>
                 <ListBox Margin="5" 
                          Name="PriorityList"
-                         ItemsSource="{Binding Source={StaticResource PrioritiesNames}}"/>
-                <Button Margin="5" Name="PriorityApplyButton" Content="Apply"/>
+                         ItemsSource="{Binding Source={StaticResource PrioritiesNames}}"
+                         SelectedItem="{Binding SelectedPriority, Mode=OneWayToSource}"/>
+                <Button Margin="5" Name="PriorityApplyButton" Content="Apply"
+                        Command="{Binding ApplyPriorityClass}"/>
                 <Button Margin="5" Name="KillProcessButton" Content="Kill process" Background="OrangeRed"/>
             </StackPanel>
         </Grid>
