@@ -47,17 +47,19 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="53*"></ColumnDefinition>
-                    <ColumnDefinition Width="26*"></ColumnDefinition>
-                    <ColumnDefinition Width="27*"/>
-                    <ColumnDefinition Width="160*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Name="SortButton" Content="Sort" Margin="5,0,5,0" Height="29" VerticalAlignment="Center"
                         Command="{Binding SortProcessesList}"/>
                 <Label Grid.Column="1" Content="Filter:" Margin="10,5,0,5" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-                <TextBox Grid.Column="3" Name="FilterText" Margin="5,5,5,5" 
+                <TextBox Grid.Column="2" Name="FilterText" Margin="5,5,5,5" 
                          Text="{Binding Path=FilterText, Mode=OneWayToSource}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=FilterProcessList}" Key="Enter" />
+                    </TextBox.InputBindings>
                 </TextBox>
             </Grid>
 
@@ -99,7 +101,7 @@
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID"/>
                             <GridViewColumn DisplayMemberBinding="{Binding CurrentPriority}" Header="Priority"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding StartTime}" Header="Start time"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding ThreadState}" Header="State"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

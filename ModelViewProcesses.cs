@@ -23,6 +23,7 @@ namespace Processes
             _model.RefreshProcesses = new RelayCommand(RefreshProcessesCommand);
             _model.ToggleRefreshing = new RelayCommand(ToggleAutomaticRefreshingCommand);
             _model.SortProcessesList = new RelayCommand(SortProcessesListCommand);
+            _model.FilterProcessList = new RelayCommand(FilterProcessListCommand);
             _model.ApplyPriorityClass = new RelayCommand(ApplyPriorityClassCommand);
             _model.KillProcess = new RelayCommand(KillProcessCommand);
 
@@ -34,20 +35,14 @@ namespace Processes
         public ICommand RefreshProcesses => _model.RefreshProcesses;
         public ICommand ToggleAutomaticRefreshing => _model.ToggleRefreshing;
         public ICommand SortProcessesList => _model.SortProcessesList;
+        public ICommand FilterProcessList => _model.FilterProcessList;
         public ICommand ApplyPriorityClass => _model.ApplyPriorityClass;
         public ICommand KillProcess => _model.KillProcess;
         
         public string? FilterText
         {
             get => _model.FilterText;
-            set
-            {
-                _model.FilterText = value;
-                if (value == null) return;
-
-                _model.ProcessesList = _model.ProcessesList.Where(x => x.ProcessName.Contains(value));
-                OnPropertyUpdated(nameof(ProcessesList));
-            }
+            set => _model.FilterText = value;
         }
 
         public string? RefreshInterval
@@ -79,6 +74,7 @@ namespace Processes
         private void KillProcessCommand(object obj)
         {
             if (SelectedProcess == null) return;
+
             SelectedProcess.Kill();
             RefreshProcessesList();
         }
@@ -89,6 +85,14 @@ namespace Processes
             if (SelectedProcess.PriorityClass == SelectedPriority) return;
 
             SelectedProcess.PriorityClass = SelectedPriority;
+            OnPropertyUpdated(nameof(ProcessesList));
+        }
+
+        private void FilterProcessListCommand(object obj)
+        {
+            if (_model.FilterText == null) return;
+
+            _model.ProcessesList = _model.ProcessesList.Where(x => x.ProcessName.Contains(_model.FilterText));
             OnPropertyUpdated(nameof(ProcessesList));
         }
 
