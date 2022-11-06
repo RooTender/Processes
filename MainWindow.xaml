@@ -32,30 +32,34 @@
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="ForceRefreshButton" Content="Refresh" Margin="5" />
-                <Button Grid.Column="1" Name="ToggleRefreshingButton" Content="Start" Margin="5" />
-                <TextBox Grid.Column="2" Name="RefreshFrequency" Margin="5"></TextBox>
+                <Button Grid.Column="0" Name="ForceRefreshButton" Content="Refresh" Margin="5" 
+                        Command="{Binding RefreshProcesses}"/>
+                <Button Grid.Column="1" Name="ToggleRefreshingButton" Content="Start / Stop timer" Margin="5"
+                        Command="{Binding ToggleAutomaticRefreshing}"/>
+                <TextBox Grid.Column="2" Name="RefreshFrequency" Margin="5" 
+                         Text="{Binding Path=RefreshInterval, Mode=OneWayToSource}"/>
             </Grid>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="53*"></ColumnDefinition>
+                    <ColumnDefinition Width="26*"></ColumnDefinition>
+                    <ColumnDefinition Width="27*"/>
+                    <ColumnDefinition Width="160*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="SortButton" Content="Sort" Margin="5,5,5,0" Height="29" VerticalAlignment="Top" />
-                <Label Grid.Column="1" Content="Filter:" Margin="5" HorizontalAlignment="Right"/>
-                <TextBox Grid.Column="2" Name="FilterText" Margin="5" ></TextBox>
+                <Button Grid.Column="0" Name="SortButton" Content="Sort" Margin="5,0,5,0" Height="29" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Content="Filter:" Margin="10,5,0,5" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                <TextBox Grid.Column="3" Name="FilterText" Margin="5,5,5,5" ></TextBox>
             </Grid>
 
             <ListView Grid.Row="2" Name="ProcessList" Margin="5" 
-                     ItemsSource="{Binding ProcessesList}">
+                     ItemsSource="{Binding ProcessesList, Mode=OneWay}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID"/>

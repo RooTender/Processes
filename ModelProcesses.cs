@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Processes
 {
@@ -15,5 +11,9 @@ namespace Processes
         public string? ProcessId;
         public string? ProcessName;
         public string? ProcessTotalActiveTime;
+        public string? RefreshInterval;
+
+        public ICommand RefreshProcesses;
+        public ICommand ToggleRefreshing;
     }
 }
