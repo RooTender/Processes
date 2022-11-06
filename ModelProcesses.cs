@@ -8,11 +8,10 @@ namespace Processes
     {
         public IEnumerable<Process> ProcessesList;
 
-        public string? ProcessId;
-        public string? ProcessName;
-        public string? ProcessTotalActiveTime;
         public string? RefreshInterval;
         public string? FilterText;
+
+        public Process? SelectedProcess;
 
         public ICommand RefreshProcesses;
         public ICommand ToggleRefreshing;

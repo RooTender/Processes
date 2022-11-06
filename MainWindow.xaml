@@ -62,7 +62,8 @@
             </Grid>
 
             <ListView Grid.Row="2" Name="ProcessList" Margin="5" 
-                     ItemsSource="{Binding ProcessesList, Mode=OneWay}">
+                     ItemsSource="{Binding ProcessesList, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedProcess, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID"/>
@@ -80,13 +81,28 @@
 
             <StackPanel Grid.Column="0">
                 <Label FontWeight="Bold">Id:</Label>
-                <TextBlock Name="ProcessId" Margin="5, 0, 0, 0"/>
+                <TextBlock Name="ProcessId" Margin="5, 0, 0, 0"
+                           Text="{Binding SelectedProcess.Id, Mode=OneWay}"/>
                 <Label FontWeight="Bold">Name:</Label>
-                <TextBlock Name="ProcessName" Margin="5, 0, 0, 0"/>
-                <Label FontWeight="Bold">Total active time:</Label>
-                <TextBlock Name="ProcessActiveTime" Margin="5, 0, 0, 0"/>
-                <Label FontWeight="Bold">Modules:</Label>
-                <ListBox Name="ProcessModules" Margin="5" />
+                <TextBlock Name="ProcessName" Margin="5, 0, 0, 0"
+                           Text="{Binding SelectedProcess.ProcessName, Mode=OneWay}"/>
+                <Label FontWeight="Bold">User processor time:</Label>
+                <TextBlock Name="ProcessUserProcessorTime" Margin="5, 0, 0, 0"
+                           Text="{Binding SelectedProcess.UserProcessorTime, Mode=OneWay}"/>
+                <Label FontWeight="Bold">Total processor time:</Label>
+                <TextBlock Name="ProcessTotalProcessorTime" Margin="5, 0, 0, 0"
+                           Text="{Binding SelectedProcess.TotalProcessorTime, Mode=OneWay}"/> 
+                <Label FontWeight="Bold">Associated threads:</Label>
+                <ListView Name="ProcessModules" Margin="5"
+                         ItemsSource="{Binding SelectedProcess.Threads, Mode=OneWay}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding CurrentPriority}" Header="Priority"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding StartTime}" Header="Start time"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
 
             <StackPanel Grid.Column="1">

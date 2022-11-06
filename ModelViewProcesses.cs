@@ -53,11 +53,16 @@ namespace Processes
             get => _model.RefreshInterval;
             set => _model.RefreshInterval = value;
         }
-        
 
-        public string? ProcessId => _model.ProcessId;
-        public string? ProcessName => _model.ProcessName;
-        public string? ProcessTotalActiveTime => _model.ProcessTotalActiveTime;
+        public Process? SelectedProcess
+        {
+            get => _model.SelectedProcess;
+            set
+            {
+                _model.SelectedProcess = value;
+                OnPropertyUpdated(nameof(SelectedProcess));
+            }
+        }
 
         private void SortProcessesListCommand(object obj)
         {
