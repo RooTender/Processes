@@ -37,9 +37,9 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Refresh" Margin="5" />
-                <Button Grid.Column="1" Content="Start" Margin="5" />
-                <TextBox Grid.Column="2" Margin="5" ></TextBox>
+                <Button Grid.Column="0" Name="ForceRefreshButton" Content="Refresh" Margin="5" />
+                <Button Grid.Column="1" Name="ToggleRefreshingButton" Content="Start" Margin="5" />
+                <TextBox Grid.Column="2" Name="RefreshFrequency" Margin="5" ></TextBox>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -49,12 +49,12 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Sort" Margin="5" />
+                <Button Grid.Column="0" Name="SortButton" Content="Sort" Margin="5,5,5,0" Height="29" VerticalAlignment="Top" />
                 <Label Grid.Column="1" Content="Filter:" Margin="5" HorizontalAlignment="Right"/>
-                <TextBox Grid.Column="2" Margin="5" ></TextBox>
+                <TextBox Grid.Column="2" Name="FilterText" Margin="5" ></TextBox>
             </Grid>
 
-            <ListBox Grid.Row="2" Margin="5" />
+            <ListBox Grid.Row="2" Name="ProcessList" Margin="5" />
         </Grid>
 
         <Grid Column="1">
@@ -77,9 +77,10 @@
             <StackPanel Grid.Column="1">
                 <Label FontWeight="Bold">Priority:</Label>
                 <ListBox Margin="5" 
+                         Name="PriorityList"
                          ItemsSource="{Binding Source={StaticResource PrioritiesNames}}"/>
-                <Button Margin="5" Content="Apply"/>
-                <Button Margin="5" Content="Kill process" Background="OrangeRed"/>
+                <Button Margin="5" Name="PriorityApplyButton" Content="Apply"/>
+                <Button Margin="5" Name="KillProcessButton" Content="Kill process" Background="OrangeRed"/>
             </StackPanel>
         </Grid>
     </Grid>
