@@ -24,6 +24,7 @@ namespace Processes
             _model.ToggleRefreshing = new RelayCommand(ToggleAutomaticRefreshingCommand);
             _model.SortProcessesList = new RelayCommand(SortProcessesListCommand);
             _model.ApplyPriorityClass = new RelayCommand(ApplyPriorityClassCommand);
+            _model.KillProcess = new RelayCommand(KillProcessCommand);
 
             _timer.Tick += RefreshProcessesCommand;
         }
@@ -34,6 +35,7 @@ namespace Processes
         public ICommand ToggleAutomaticRefreshing => _model.ToggleRefreshing;
         public ICommand SortProcessesList => _model.SortProcessesList;
         public ICommand ApplyPriorityClass => _model.ApplyPriorityClass;
+        public ICommand KillProcess => _model.KillProcess;
         
         public string? FilterText
         {
@@ -72,6 +74,13 @@ namespace Processes
                 _model.SelectedPriority = value;
                 OnPropertyUpdated(nameof(SelectedPriority));
             }
+        }
+
+        private void KillProcessCommand(object obj)
+        {
+            if (SelectedProcess == null) return;
+            SelectedProcess.Kill();
+            RefreshProcessesList();
         }
 
         private void ApplyPriorityClassCommand(object obj)

@@ -113,7 +113,8 @@
                          SelectedItem="{Binding SelectedPriority, Mode=OneWayToSource}"/>
                 <Button Margin="5" Name="PriorityApplyButton" Content="Apply"
                         Command="{Binding ApplyPriorityClass}"/>
-                <Button Margin="5" Name="KillProcessButton" Content="Kill process" Background="OrangeRed"/>
+                <Button Margin="5" Name="KillProcessButton" Content="Kill process" Background="OrangeRed"
+                        Command="{Binding KillProcess}"/>
             </StackPanel>
         </Grid>
     </Grid>

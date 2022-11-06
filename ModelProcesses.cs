@@ -19,5 +19,6 @@ namespace Processes
         public ICommand SortProcessesList;
         public ICommand FilterProcessList;
         public ICommand ApplyPriorityClass;
+        public ICommand KillProcess;
     }
 }
