@@ -39,7 +39,7 @@
 
                 <Button Grid.Column="0" Name="ForceRefreshButton" Content="Refresh" Margin="5" />
                 <Button Grid.Column="1" Name="ToggleRefreshingButton" Content="Start" Margin="5" />
-                <TextBox Grid.Column="2" Name="RefreshFrequency" Margin="5" ></TextBox>
+                <TextBox Grid.Column="2" Name="RefreshFrequency" Margin="5"></TextBox>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -65,13 +65,13 @@
 
             <StackPanel Grid.Column="0">
                 <Label FontWeight="Bold">Id:</Label>
-                <TextBlock Margin="5, 0, 0, 0" Text="test"/>
+                <TextBlock Name="ProcessId" Margin="5, 0, 0, 0"/>
                 <Label FontWeight="Bold">Name:</Label>
-                <TextBlock Margin="5, 0, 0, 0" Text="test"/>
+                <TextBlock Name="ProcessName" Margin="5, 0, 0, 0"/>
                 <Label FontWeight="Bold">Total active time:</Label>
-                <TextBlock Margin="5, 0, 0, 0" Text="test"/>
+                <TextBlock Name="ProcessActiveTime" Margin="5, 0, 0, 0"/>
                 <Label FontWeight="Bold">Modules:</Label>
-                <ListBox Margin="5" />
+                <ListBox Name="ProcessModules" Margin="5" />
             </StackPanel>
 
             <StackPanel Grid.Column="1">
